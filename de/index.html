@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AeroVision AR — Augmented-Reality-Plattform für die Flugzeugwartung mit Zuverlässigkeit auf Luft- und Raumfahrtniveau." />
+  <title>AeroVision AR — Aerospace-grade Reliability</title>
+  <style>
+    /* ---------- Reset & base ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: #1a1a1a;
+      background: #fafafa;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { font-weight: 600; letter-spacing: -0.01em; margin: 0 0 0.6em; }
+    h1 { font-size: 2rem; line-height: 1.15; }
+    h2 { font-size: 1.5rem; margin-top: 0; color: #0b2545; }
+    h3 { font-size: 1.1rem; color: #0b2545; }
+    p { margin: 0 0 1em; }
+    a { color: #0b2545; }
+
+    /* ---------- Layout ---------- */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem; }
+    section { padding: 3rem 0; border-bottom: 1px solid #e6e6e6; }
+    section:last-of-type { border-bottom: none; }
+
+    /* ---------- Header / Hero ---------- */
+    header.hero {
+      background: linear-gradient(135deg, #0b2545 0%, #13315c 100%);
+      color: #fff;
+      padding: 3rem 0 3.5rem;
+    }
+    header.hero .container { display: flex; flex-direction: column; gap: 1.5rem; }
+    .top-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 1rem; flex-wrap: wrap;
+    }
+    .lang-switch {
+      display: flex; gap: 0.4rem; align-items: center;
+      font-size: 0.85rem;
+    }
+    .lang-switch a {
+      color: #cbd5e1; text-decoration: none;
+      padding: 0.2rem 0.45rem; border-radius: 4px;
+      transition: color 0.15s ease, background 0.15s ease;
+    }
+    .lang-switch a:hover, .lang-switch a:focus {
+      color: #fff; background: rgba(255,255,255,0.08);
+    }
+    .lang-switch a[aria-current="true"] {
+      color: #f4b41a; font-weight: 600; text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .lang-switch span.sep { color: #54637a; }
+    .brand { display: flex; align-items: center; gap: 0.75rem; }
+    .logo-placeholder {
+      width: 48px; height: 48px; border-radius: 8px;
+      background: #f4b41a; color: #0b2545;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    .brand-name { font-size: 1.25rem; font-weight: 600; letter-spacing: 0.02em; }
+    .uvp {
+      font-size: 1.75rem; font-weight: 600; line-height: 1.25;
+      max-width: 36ch;
+    }
+    .uvp .accent { color: #f4b41a; }
+    .subtitle { font-size: 1.05rem; opacity: 0.92; max-width: 60ch; margin: 0; }
+    .cta {
+      display: inline-block;
+      margin-top: 0.5rem;
+      background: #f4b41a;
+      color: #0b2545;
+      padding: 0.85rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      align-self: flex-start;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .cta:hover, .cta:focus { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.18); }
+
+    /* ---------- Two-column ---------- */
+    .cols { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+    @media (min-width: 720px) { .cols { grid-template-columns: 1fr 1fr; } }
+
+    /* ---------- Cards ---------- */
+    .card-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 720px) { .card-grid { grid-template-columns: repeat(3, 1fr); } }
+    .card {
+      background: #fff;
+      border: 1px solid #e6e6e6;
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+    .card h3 { margin-top: 0; }
+    .card p { margin: 0; color: #444; }
+    ul.dolores { padding-left: 1.1rem; margin: 0; }
+    ul.dolores li { margin-bottom: 0.4rem; color: #444; }
+
+    /* ---------- Logos / early adopters ---------- */
+    .logos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    @media (min-width: 720px) { .logos { grid-template-columns: repeat(6, 1fr); } }
+    .logo-card {
+      background: #fff;
+      border: 1px dashed #c0c8d4;
+      border-radius: 6px;
+      padding: 1rem 0.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+      min-height: 76px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ---------- Team ---------- */
+    .team { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+    .member { flex: 1 1 200px; }
+    .member .name { font-weight: 600; color: #0b2545; }
+    .member .role { font-size: 0.9rem; color: #555; }
+    .team-tag {
+      display: inline-block;
+      background: #eef2f7; color: #0b2545;
+      padding: 0.25rem 0.65rem; border-radius: 999px;
+      font-size: 0.85rem; font-weight: 500;
+      margin-top: 0.5rem;
+    }
+
+    /* ---------- Contact form ---------- */
+    form { display: grid; gap: 0.75rem; max-width: 520px; }
+    label { font-size: 0.9rem; font-weight: 500; color: #0b2545; }
+    input, textarea {
+      font: inherit;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid #c0c8d4;
+      border-radius: 6px;
+      width: 100%;
+      background: #fff;
+    }
+    input:focus, textarea:focus { outline: 2px solid #0b2545; outline-offset: 1px; }
+    textarea { min-height: 110px; resize: vertical; }
+    button {
+      font: inherit;
+      background: #0b2545; color: #fff;
+      padding: 0.75rem 1.25rem;
+      border: none; border-radius: 6px;
+      font-weight: 600; cursor: pointer;
+      justify-self: start;
+    }
+    button:hover, button:focus { background: #13315c; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: #0b2545; color: #cbd5e1;
+      padding: 1.5rem 0; font-size: 0.9rem;
+    }
+    footer .container { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: space-between; }
+    footer a { color: #f4b41a; text-decoration: none; }
+
+    /* ---------- Mobile typography ---------- */
+    @media (max-width: 480px) {
+      h1, .uvp { font-size: 1.5rem; }
+      section { padding: 2.25rem 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" role="banner">
+    <div class="container">
+      <div class="top-bar">
+        <div class="brand">
+          <div class="logo-placeholder" aria-hidden="true">AV</div>
+          <span class="brand-name">AeroVision AR</span>
+        </div>
+        <nav class="lang-switch" aria-label="Sprachauswahl">
+          <a href="../" hreflang="es" lang="es">ES</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="../en/" hreflang="en" lang="en">EN</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="../fr/" hreflang="fr" lang="fr">FR</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <a href="./" hreflang="de" lang="de" aria-current="true">DE</a>
+        </nav>
+      </div>
+      <h1 class="uvp"><span class="accent">Aerospace-grade Reliability</span> für die Flugzeugwartung.</h1>
+      <p class="subtitle">Geführte Augmented Reality, Verifizierung per Computer-Vision und automatisierte regulatorische Rückverfolgbarkeit. Für MROs, Airlines, OEMs und die Verteidigungsluftfahrt.</p>
+      <a class="cta" href="mailto:hello@aerovision.ar?subject=Ich%20m%C3%B6chte%20mehr%20%C3%BCber%20AeroVision%20AR%20erfahren">Kontakt aufnehmen</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="problem" aria-labelledby="h-problem">
+      <div class="container">
+        <h2 id="h-problem">Das Problem</h2>
+        <div class="cols">
+          <div>
+            <h3>Für den Wartungstechniker</h3>
+            <ul class="dolores">
+              <li>Dichte PDF- oder Papierverfahren, die mit Handschuhen im Hangar nur schwer nachzuvollziehen sind.</li>
+              <li>Angst vor menschlichem Fehler: Eine einzige Unterlassung kann einen AOG (Aircraft on Ground) auslösen.</li>
+              <li>Doppelarbeit: Aufgabe ausführen und anschließend für das Audit manuell dokumentieren.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Für den Entscheider (MRO-Leitung / CTO)</h3>
+            <ul class="dolores">
+              <li>Wartungszeiten oberhalb der Zielvorgaben und Verzögerungen in der gesamten Flotte.</li>
+              <li>Risiko der Nichtkonformität mit EASA / FAA und reputativer Schaden bei Zwischenfällen.</li>
+              <li>Lange Lernkurve angesichts hoher Fluktuation und des Ruhestands erfahrener Techniker.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="loesung" aria-labelledby="h-loesung">
+      <div class="container">
+        <h2 id="h-loesung">Unsere Lösung</h2>
+        <div class="card-grid">
+          <article class="card">
+            <h3>Schritt-für-Schritt-AR-Anleitung</h3>
+            <p>Anweisungen werden über Smart-Glasses oder Tablet direkt auf das reale Bauteil eingeblendet, reduzieren Fehler und verkürzen die Lernkurve.</p>
+          </article>
+          <article class="card">
+            <h3>Verifizierung per Computer-Vision</h3>
+            <p>Computer-Vision bestätigt in Echtzeit, dass jeder kritische Schritt korrekt ausgeführt wurde, bevor es weitergeht.</p>
+          </article>
+          <article class="card">
+            <h3>Automatisierte EASA-/FAA-Rückverfolgbarkeit</h3>
+            <p>Jeder Arbeitsschritt wird als digitaler Nachweis protokolliert und ist für das regulatorische Audit bereit. Null Papier.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="early-adopters" aria-labelledby="h-validators">
+      <div class="container">
+        <h2 id="h-validators">Wir validieren mit Branchenführern</h2>
+        <p>Wir führen Validierungsgespräche mit europäischen Tier-1-MROs und Airlines:</p>
+        <div class="logos" aria-label="Early Adopters in Validierung">
+          <div class="logo-card">Iberia MRO</div>
+          <div class="logo-card">ITP Aero</div>
+          <div class="logo-card">Lufthansa Technik</div>
+          <div class="logo-card">AFI KLM E&amp;M</div>
+          <div class="logo-card">SR Technics</div>
+          <div class="logo-card">Air Europa</div>
+        </div>
+        <p style="margin-top:1rem;font-size:0.9rem;color:#666;">Logos ausstehend — Validierungsliste, keine Partnerschaftserklärung.</p>
+      </div>
+    </section>
+
+    <section id="team" aria-labelledby="h-team">
+      <div class="container">
+        <h2 id="h-team">Das Team</h2>
+        <div class="team">
+          <div class="member">
+            <div class="name">Asterio Gonz&aacute;lez</div>
+            <div class="role">Mitgründer</div>
+          </div>
+          <div class="member">
+            <div class="name">Javier Jim&eacute;nez</div>
+            <div class="role">Mitgründer</div>
+          </div>
+          <div class="member">
+            <div class="name">Emma Lope</div>
+            <div class="role">Mitgründerin</div>
+          </div>
+        </div>
+        <span class="team-tag">MBA Aeroespacial — EOI · Jahrgang 2026</span>
+      </div>
+    </section>
+
+    <section id="kontakt" aria-labelledby="h-kontakt">
+      <div class="container">
+        <h2 id="h-kontakt">Kontakt aufnehmen</h2>
+        <p>Sind Sie MRO, Airline, OEM oder im Verteidigungsbereich tätig? Wir würden uns über ein 30-minütiges Gespräch mit Ihnen freuen.</p>
+        <form action="mailto:hello@aerovision.ar" method="post" enctype="text/plain" aria-label="Kontaktformular">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required autocomplete="name" />
+          </div>
+          <div>
+            <label for="unternehmen">Unternehmen</label>
+            <input id="unternehmen" name="unternehmen" type="text" autocomplete="organization" />
+          </div>
+          <div>
+            <label for="email">E-Mail</label>
+            <input id="email" name="email" type="email" required autocomplete="email" />
+          </div>
+          <div>
+            <label for="nachricht">Nachricht</label>
+            <textarea id="nachricht" name="nachricht" required></textarea>
+          </div>
+          <button type="submit">Nachricht senden</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <div>&copy; 2026 AeroVision AR — Projekt MBA Aeroespacial EOI</div>
+      <div><a href="mailto:hello@aerovision.ar">hello@aerovision.ar</a></div>
+    </div>
+  </footer>
+
+</body>
+</html>
